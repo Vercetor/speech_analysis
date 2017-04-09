@@ -30,7 +30,7 @@ using namespace std;
 double vectorMean(vector<double> t);  // function to find vector mean.
 double avgPower(vector<double> t); // function for avg power
 double avgMagnitude(vector<double> t); // function for magnitude.
-double Kabs(double n);
+double absPower(double n);
 
 //***************************************************
 int main()
@@ -117,13 +117,13 @@ double avgMagnitude(vector<double> t)
 
 	for (int ix = 0; ix < t.size(); ix++)
 	{
-		sum = sum + Kabs(t[ix]);
+		sum = sum + absPower(t[ix]);
 	}
 	return sum / t.size();
 }
 
 //*********************************************************
-double Kabs(double n) // forgot what this was in class... maybe variance?
+double absPower(double n) // forgot what this was in class... maybe variance?
 {
 	if (n >= 0)
 	{
