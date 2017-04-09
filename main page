@@ -1,0 +1,138 @@
+/*
+AUTHOR: Colin Powers
+DATE:4/7/17
+CLASS: ITSY 2441 - Object Oriented Programming
+INSTRUCTOR: Prof  Welch
+DESCRIPTION: write a program for basic speech signal recognition
+
+TO-DO:
+	Do entire program with vectors COMPELTE
+	Do entire program with arrays. WILL BE COMPLETE ON OTHER PROGRAM.
+	add file two_a. COMPLETE.
+	add file two_b.
+	Complete functions for standard deviation, variance and number zeros crossing.
+
+
+Lesson Learned:
+
+*/
+
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+
+// Function prototypes
+double vectorMean(vector<double> t);  // function to find vector mean.
+double avgPower(vector<double> t); // function for avg power
+double avgMagnitude(vector<double> t); // function for magnitude.
+double Kabs(double n);
+
+//***************************************************
+int main()
+{
+
+	// open file two_a.txt
+	ifstream fin("two_a.txt");
+
+	// check file to see if it exists.
+	if (!fin)
+	{
+		cout << "Error! No file found." << endl;
+	}
+
+	// creating a vector
+	vector<double>A(10);  // create a vector 
+
+	double num;
+
+	// import .txt file into the vector
+	while (fin)
+	{
+		fin >> num;
+		A.push_back(num);
+	}
+
+
+	// couts the contents of the array. commented out because its unnecessary. was just to check to make
+	// sure the array was being populated correctly.
+	/*for (int ix = 0; ix < A.size(); ix++)
+	{
+		cout << A[ix] << endl;
+	} */
+
+	cout << "               " << "two_a.txt" << "           " << "two_b.txt" << "             " << "% difference" <<  endl;
+	cout << "_________________________________________________________________________" << endl;
+	cout << "Mean: " << setw(16) << vectorMean(A) << endl; // add file two_b output as well.
+	cout << "Avg Pwr: " << setw(14) << avgPower(A) << endl;
+	cout << "Avg Mag: " << setw(14) << avgMagnitude(A) << endl;
+
+
+
+
+	return 0;
+}// END MAIN
+
+
+
+//************************************************
+double vectorMean(vector<double> t)
+{
+
+	double mean = 0;
+
+	for (int ix = 0; ix < t.size(); ix++)
+	{
+		mean += t[ix];
+	}
+
+
+	return mean;
+}// End Vector Mean  */
+
+
+
+//*********************************************
+double avgPower(vector<double> t)
+{
+	double sum = 0;
+	for (double ix = 0; ix < t.size(); ix++)
+	{
+		sum = sum + t[ix] * t[ix];
+	}
+	return sum / t.size();
+
+}// END AVG POWER 
+
+
+
+//*********************************************
+double avgMagnitude(vector<double> t)
+{
+	double sum = 0;
+
+	for (int ix = 0; ix < t.size(); ix++)
+	{
+		sum = sum + Kabs(t[ix]);
+	}
+	return sum / t.size();
+}
+
+//*********************************************************
+double Kabs(double n) // forgot what this was in class... maybe variance?
+{
+	if (n >= 0)
+	{
+		return n;
+	}
+	else {
+
+		return (n * (-1));
+	}
+
+
+}// end Kabs function
