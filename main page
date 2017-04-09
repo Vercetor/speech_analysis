@@ -123,7 +123,7 @@ double avgMagnitude(vector<double> t)
 }
 
 //*********************************************************
-double absPower(double n) // forgot what this was in class... maybe variance?
+double absPower(double n) 
 {
 	if (n >= 0)
 	{
